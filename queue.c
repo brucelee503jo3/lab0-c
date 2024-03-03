@@ -162,13 +162,14 @@ void q_reverse(struct list_head *head)
         return;
 
     struct list_head *tmp = NULL, *node = NULL;
+    tmp = head->next;
+    head->next = head->prev;
+    head->prev = tmp;
     list_for_each (node, head) {
         tmp = node->next;
         node->next = node->prev;
         node->prev = tmp;
     }
-    node->next = node->prev;
-    node->prev = tmp;
 }
 
 /* Reverse the nodes of the list k at a time */
